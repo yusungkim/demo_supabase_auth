@@ -1,0 +1,15 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    image: supabase_auth
+    tty: true
+    ports:
+      - 3000:3000
+    volumes:
+      - node_modules:/usr/src/app/node_modules
+      - .:/usr/src/app
+
+volumes:
+  node_modules:
