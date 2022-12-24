@@ -1,22 +1,19 @@
 <script lang="ts">
-  console.log("Ran: +layout.svelte")
+	import { goto } from '$app/navigation';
+	import type { PageData } from './$types';
+
+	export let data: PageData;
+
+	console.log('Ran: /+layout.svelte');
 </script>
 
-<form>
-  <input type="text" name="id" value="xx" />
-  <button class="btn btn-primary">Button</button>
-  <button class="btn btn-secondary">Button</button>
-  <button class="btn btn-accent">Button</button>
-</form>
-
-<div class="form-control w-full max-w-xs">
-  <label class="label">
-    <span class="label-text">What is your name?</span>
-    <span class="label-text-alt">Alt label</span>
-  </label>
-  <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-  <label class="label">
-    <span class="label-text-alt">Alt label</span>
-    <span class="label-text-alt">Alt label</span>
-  </label>
-</div>
+<h1 class="text-xl md:text-3xl lg:text-5xl">Sveltekit & Supabase Auth</h1>
+{#if data.session}
+	<p>Welcome, {data.session.user.email}</p>
+{:else}
+	<p class="text-lg md:text-xl lg:text-2xl p-2">to learn how to register and login</p>
+	<div class="p-3 flex space-x-4">
+		<button on:click={() => goto('/login')} class="btn btn-primary">Login</button>
+		<button on:click={() => goto('/register')} class="btn btn-secondary">Register</button>
+	</div>
+{/if}
