@@ -1,18 +1,20 @@
 <script lang="ts">
   import "../app.css";
   import { supabase } from '$lib/supabase'
-  import { invalidate } from '$app/navigation'
+  import { invalidateAll } from '$app/navigation'
   import { onMount } from 'svelte'
 
-  console.log("Ran: /+layout.svelte")
+  console.log("[Client]: /+layout.svelte")
 
   onMount(() => {
+    console.log("[Client]: /+layout.svelte #onMount()")
+
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange(() => {
-      invalidate('supabase:auth')
+      console.log("[Client]: /+layout.svelte, Auth state change detected.")
+      invalidateAll()
     })
-    console.log("Ran: +layout.svelte #onMount")
 
     return () => {
       subscription.unsubscribe()

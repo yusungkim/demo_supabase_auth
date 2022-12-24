@@ -2,13 +2,13 @@ import { AuthApiError } from "@supabase/supabase-js";
 import { fail, redirect } from "@sveltejs/kit";
 import type { Actions } from "./$types";
 
-console.log("Ran: /register/+page.server.ts")
+console.log("[SERVER]: /register/+page.server.ts")
 
 export const actions: Actions = {
   register: async ({ request, locals }) => {
+    // body has session and user
     const body = Object.fromEntries(await request.formData())
 
-    console.log( "body: ", body)
     const { data, error: err } = await locals.sb.auth.signUp({
       email: body.email as string,
       password: body.password as string

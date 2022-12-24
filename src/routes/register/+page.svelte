@@ -1,5 +1,5 @@
 <script lang="ts">
-	console.log('Ran: /register/+page.svelte');
+	console.log('[Client]: /register/+page.svelte');
 </script>
 
 <h1 class="text-xl md:text-3xl lg:text-5xl">Register</h1>
@@ -17,5 +17,5 @@
 		</label>
 		<input id="password" name="password" type="password" placeholder="" class="input input-bordered w-full" />
 	</div>
-	<button class="btn btn-primary w-full">Register</button>
+	<button type="submit" class="btn btn-primary w-full">Register</button>
 </form>
