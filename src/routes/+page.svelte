@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
-	import { supabase } from '$lib/supabase';
+	import { supabaseClient } from '$lib/supabase';
 	import type { SubmitFunction } from '@sveltejs/kit';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
 
 	const logoutSubmit: SubmitFunction = async ({ cancel }) => {
-		const { error } = await supabase.auth.signOut();
+		const { error } = await supabaseClient.auth.signOut();
 		if (error) {
 			console.log(error);
 		}
